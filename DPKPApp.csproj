@@ -59,7 +59,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\ConnectionClass.cs" />
     <Compile Include="Data\ProjectsData.cs" />
+    <Compile Include="Data\Tables.cs" />
     <Compile Include="Model\Departament.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Student.cs" />

@@ -8,7 +8,7 @@ namespace DPKPApp.Model
 {
     public class Group
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public Departament Departament { get; set; }
     }

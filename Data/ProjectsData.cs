@@ -11,10 +11,5 @@ namespace DPKPApp.Data
 {
     static public class ProjectsData
     {
-        private static ObservableCollection<Project> ProjectList = new ObservableCollection<Project>();
-        //private static ObservableCollection<Project> GetProjects()
-        //{
-
-        //}
     }
 }
