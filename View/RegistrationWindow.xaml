@@ -126,7 +126,7 @@
                 Foreground="#005086"
                 Background="White"
                 Padding="60,5"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center" Click="Button_Click"/>
             <Image Source="/Data/Images/Logo.png" 
        Width="100" 
        Height="50" 
