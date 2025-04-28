@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DPKPApp.Data;
+using DPKPApp.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +25,10 @@ namespace DPKPApp.View
         public CatalogeWindow()
         {
             InitializeComponent();
+            DiplomaWorksList.ItemsSource = Tables.StudentWorks;
+            TypeFilterComboBox.ItemsSource = Tables.TypeOfStudents;
+            GroupFilterComboBox.ItemsSource = Tables.Groups;
+            TeacherFilterComboBox.ItemsSource = Tables.Teachers;
         }
 
         private void ResetFiltersButton_Click(object sender, RoutedEventArgs e)

@@ -13,5 +13,11 @@ namespace DPKPApp.Model
         public string Surname { get; set; }
         public string SecondName { get; set; }
         public Group GroupNumber { get; set; }
+        public string FullName { 
+            get
+            {
+                return $"{Surname} {FirstName[0]}.{SecondName[0]}.";
+            } 
+        }
     }
 }

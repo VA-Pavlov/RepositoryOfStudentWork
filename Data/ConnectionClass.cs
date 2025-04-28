@@ -1,6 +1,7 @@
 ﻿using DPKPApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,18 +13,18 @@ namespace DPKPApp.Data
     {
         private static SqlConnection connection = new SqlConnection("Data Source=VIACHESLAV;Initial Catalog=ATT;Integrated Security=True;");
 
-        public static List<Object> GetTables()
+        public static ObservableCollection<Object> GetTables()
         {
             try
             {
-                List<Object> tables = new List<Object>();
+                ObservableCollection<Object> tables = new ObservableCollection<Object>();
                 connection.Open();
-                var departments = GetDepartamentList();
-                var groups = GetGroupsList(departments);
-                var students = GetStudensList(groups);
-                var types = GetTypesOfStudentWorkList();
-                var teachers = GetTeachersList();
-                var studentsWork = GetStudentWorksList(types,teachers,students);
+                var departments = GetDepartamentObservableCollection();
+                var groups = GetGroupsObservableCollection(departments);
+                var students = GetStudensObservableCollection(groups);
+                var types = GetTypesOfStudentWorkObservableCollection();
+                var teachers = GetTeachersObservableCollection();
+                var studentsWork = GetStudentWorksObservableCollection(types,teachers,students);
                 tables.Add(departments);
                 tables.Add(groups);
                 tables.Add(students);
@@ -41,9 +42,9 @@ namespace DPKPApp.Data
             }
         }
 
-        private static List<Departament> GetDepartamentList()
+        private static ObservableCollection<Departament> GetDepartamentObservableCollection()
         {
-            List<Departament> departaments = new List<Departament>();
+            ObservableCollection<Departament> departaments = new ObservableCollection<Departament>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Departaments", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -56,11 +57,12 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             return departaments;
         }
-        private static List<Model.Group> GetGroupsList(List<Departament> departaments)
+        private static ObservableCollection<Model.Group> GetGroupsObservableCollection(ObservableCollection<Departament> departaments)
         {
-            List<Model.Group> groups = new List<Model.Group>();
+            ObservableCollection<Model.Group> groups = new ObservableCollection<Model.Group>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Groups", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -73,6 +75,7 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             foreach (var group in groups)
             {
                 foreach (var departament in departaments)
@@ -86,9 +89,9 @@ namespace DPKPApp.Data
             }
             return groups;
         }
-        private static List<Student> GetStudensList(List<Model.Group> groups)
+        private static ObservableCollection<Student> GetStudensObservableCollection(ObservableCollection<Model.Group> groups)
         {
-            List<Student> students = new List<Student>();
+            ObservableCollection<Student> students = new ObservableCollection<Student>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Students", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -103,6 +106,7 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             foreach (var student in students)
             {
                 foreach (var group in groups)
@@ -116,9 +120,9 @@ namespace DPKPApp.Data
             }
             return students;
         }
-        private static List<TypeOfStudentWork> GetTypesOfStudentWorkList()
+        private static ObservableCollection<TypeOfStudentWork> GetTypesOfStudentWorkObservableCollection()
         {
-            List<TypeOfStudentWork> types = new List<TypeOfStudentWork>();
+            ObservableCollection<TypeOfStudentWork> types = new ObservableCollection<TypeOfStudentWork>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM TypeOfStudentWork", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -132,11 +136,12 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             return types;
         }
-        private static List<Teacher> GetTeachersList()
+        private static ObservableCollection<Teacher> GetTeachersObservableCollection()
         {
-            List<Teacher> teachers = new List<Teacher>();
+            ObservableCollection<Teacher> teachers = new ObservableCollection<Teacher>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Teachers", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -153,11 +158,12 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             return teachers;
         }
-        private static List<StudentWork> GetStudentWorksList(List<TypeOfStudentWork> types, List<Teacher> teachers, List<Student> students)
+        private static ObservableCollection<StudentWork> GetStudentWorksObservableCollection(ObservableCollection<TypeOfStudentWork> types, ObservableCollection<Teacher> teachers, ObservableCollection<Student> students)
         {
-            List<StudentWork> studentWorks = new List<StudentWork>();
+            ObservableCollection<StudentWork> studentWorks = new ObservableCollection<StudentWork>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM StudentWorks", connection);
             var table = cmd.ExecuteReader();
             while (table.Read())
@@ -172,6 +178,7 @@ namespace DPKPApp.Data
                     }
                     );
             }
+            table.Close();
             foreach (var studentWork in studentWorks)
             {
                 foreach (var student in students)

@@ -11,5 +11,6 @@ namespace DPKPApp.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public Departament Departament { get; set; }
+        public override string ToString() => Name;
     }
 }

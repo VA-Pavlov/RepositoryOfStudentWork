@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DPKPApp.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,10 +45,17 @@ namespace DPKPApp.View
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             // Логика авторизации
+            if (Tables.RefreshTabls())
+            {
+                CatalogeWindow catalogeWindow = new CatalogeWindow();
+                catalogeWindow.Show();
+                this.Close();
+            }
         }
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            // Логика регистрации
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.ShowDialog();
         }
     }
 }
