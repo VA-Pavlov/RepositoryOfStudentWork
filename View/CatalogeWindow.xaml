@@ -63,21 +63,37 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <GroupBox Grid.Column="0" Header="Фильтры" Margin="5" FontSize="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top" FontSize="15" Grid.ColumnSpan="2">
+            <MenuItem Header="Система">
+                <MenuItem Header="Обновить данные" />
+                <MenuItem Header="Обновить список работ" />
+                <Separator />
+                <MenuItem Header="Выйти" />
+            </MenuItem>
+            <MenuItem Header="Данные" >
+                <MenuItem Header="Загрузить работу студента"/>
+                <MenuItem Header="Добавить преподавателя"/>
+                <MenuItem Header="Добавить учебную группу"/>
+                <MenuItem Header="Добавить тип работы"/>
+                <MenuItem Header="Добавить отделение"/>
+            </MenuItem>
+        </Menu>
+        <GroupBox Grid.Column="0" Grid.Row="1" Header="Фильтры" Margin="5" FontSize="15">
             <StackPanel>
                 <TextBox x:Name="SearchTextBox" Tag="Поиск"/>
-
-                <ComboBox x:Name="TypeFilterComboBox"/>
-                <ComboBox x:Name="TeacherFilterComboBox"/>
-                <ComboBox x:Name="GroupFilterComboBox"/>
-                <ComboBox x:Name="GradeFilterComboBox">
+                <ComboBox x:Name="TypeFilterComboBox" IsTextSearchEnabled="True" IsEditable="True"/>
+                <ComboBox x:Name="TeacherFilterComboBox" IsTextSearchEnabled="True" IsEditable="True"/>
+                <ComboBox x:Name="GroupFilterComboBox" IsTextSearchEnabled="True" IsEditable="True"/>
+                <ComboBox x:Name="GradeFilterComboBox" IsTextSearchEnabled="True" IsEditable="True">
                     <ComboBoxItem Content="Нет оценки"/>
                     <ComboBoxItem Content="Отлично"/>
                     <ComboBoxItem Content="Хорошо"/>
@@ -92,12 +108,11 @@
                         <DatePicker x:Name="ToDatePicker" Margin="0 5"/>
                     </StackPanel>
                 </GroupBox>
-
                 <Button Content="Сбросить фильтры"
                         Click="ResetFiltersButton_Click"/>
             </StackPanel>
         </GroupBox>
-        <Border Margin="20" Grid.Column="1" Background="#FF337AB7"
+        <Border Grid.Row="1" Margin="20" Grid.Column="1" Background="#FF337AB7"
                 CornerRadius="20">
             <Grid >
                 <Grid.RowDefinitions>
@@ -106,7 +121,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
-                   Text="Список дипломных работ"
+                   Text="Список студенческих работ"
                    Style="{StaticResource HeaderStyle}"
                    Margin="0,10,0,20"
                    HorizontalAlignment="Center"/>
