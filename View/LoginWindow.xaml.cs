@@ -44,13 +44,23 @@ namespace DPKPApp.View
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // Логика авторизации
-            if (Tables.RefreshTabls())
+            if (txtLogin.Text == "" || txtPassword.Password == "")
             {
-                CatalogeWindow catalogeWindow = new CatalogeWindow();
-                catalogeWindow.Show();
-                this.Close();
+                MessageBox.Show("Заполнены не все поля!", "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+            LoginClass loginClass = new LoginClass();
+            if (loginClass.FindUser(txtLogin.Text, txtPassword.Password))
+            {
+                if (Tables.RefreshTabls())
+                {
+                    CatalogeWindow catalogeWindow = new CatalogeWindow();
+                    catalogeWindow.Show();
+                    this.Close();
+                }
+                return;
+            }
+            MessageBox.Show("Неверный логин или пароль", "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {

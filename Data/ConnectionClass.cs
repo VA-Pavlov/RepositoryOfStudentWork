@@ -11,7 +11,8 @@ namespace DPKPApp.Data
 {
     public static class ConnectionClass
     {
-        private static SqlConnection connection = new SqlConnection("Data Source=VIACHESLAV;Initial Catalog=ATT;Integrated Security=True;");
+        public static string lineConnection = "Data Source=WIN-PKUO4L9RGT8;Initial Catalog=ATT;Integrated Security=True;";
+        private static SqlConnection connection = new SqlConnection(lineConnection);
 
         public static ObservableCollection<Object> GetTables()
         {
@@ -150,8 +151,6 @@ namespace DPKPApp.Data
                     new Teacher()
                     {
                         Id = table.GetInt32(0),
-                        Login = table.GetString(1),
-                        Password = table.GetString(2),
                         FirstName = table.GetString(3),
                         Surname = table.GetString(4),
                         SecondName = table.GetString(5)

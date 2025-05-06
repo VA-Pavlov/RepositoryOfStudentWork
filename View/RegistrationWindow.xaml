@@ -119,7 +119,7 @@
                     Foreground="#005086"
                     Background="White"
                     Padding="60,5"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center" Click="CreateUser_Click"/>
             <Button
                 Margin="0,10"
                 Content="Вернуться"

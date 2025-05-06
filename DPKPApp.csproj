@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\ConnectionClass.cs" />
+    <Compile Include="Data\LoginClass.cs" />
     <Compile Include="Data\ProjectsData.cs" />
     <Compile Include="Data\Tables.cs" />
     <Compile Include="Model\Departament.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Model\StudentWork.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\TypeOfStudentWork.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="View\CatalogeWindow.xaml.cs">
       <DependentUpon>CatalogeWindow.xaml</DependentUpon>
     </Compile>
